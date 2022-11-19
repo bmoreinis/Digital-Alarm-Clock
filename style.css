@@ -32,11 +32,11 @@ button:active {
 }
 
 .alarmActive {
-  animation: blinker .25s linear infinite;
+  animation: blinker 1s linear infinite;
 }
 
 @keyframes blinker {
   50% {
-    color:cornflowerblue;
+    color:white;
   }
 }

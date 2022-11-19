@@ -40,7 +40,8 @@ function setAlarm(){
   hA = prompt("hour?");
   mA = prompt("minute?");
   let alarmButton = document.getElementById("alarmSet");
-  alarmButton.classList.add("alarmActive");
+  let clock = document.getElementById("clock");
+  clock.classList.add("alarmActive");
   alarmButton.innerHTML = "Remove "+ hA +":"+mA;
   alarmButton.setAttribute("onClick", "clearAlarm()");
 }
@@ -48,8 +49,9 @@ function setAlarm(){
 function clearAlarm(){
   hA = "00";
   mA = "00";
+  let clock = document.getElementById("clock");
+  clock.classList.remove("alarmActive");
   let alarmButton = document.getElementById("alarmSet");
-  alarmButton.classList.remove("alarmActive");
   alarmButton.innerHTML = "Set Alarm";
   alarmButton.setAttribute("onClick", "setAlarm()");
 }
