@@ -1,0 +1,42 @@
+body {
+    background: black;
+}
+
+#clock{
+  color: #17D4FE;
+  width: 45%;
+  font-size: 24pt;
+  letter-spacing: 7px;
+  padding:10px;
+  display:none;
+}
+
+button {
+  width:150px;
+  font-size:12pt;
+  display:block;
+  padding:5px;
+}
+
+#clock, button {
+  margin: auto; 
+  text-align: center;
+}
+
+button:hover{
+  background-color:cornflowerblue;
+}
+
+button:active {
+  background-color:white;
+}
+
+.alarmActive {
+  animation: blinker .25s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    color:cornflowerblue;
+  }
+}
