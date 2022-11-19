@@ -1,8 +1,10 @@
-var hA = "00";
-var mA = "00";
+var h, m, hA, mA, sessionA, time, alarmTime;
+var session = "AM";
 var alarmSet = false;
+var alarmButton = document.getElementById("alarmSet");
+var clock = document.getElementById("clock");
+
 function showClock() {
-  let alarmButton = document.getElementById("alarmSet");
   alarmButton.innerHTML = "Set Alarm";
   alarmButton.setAttribute("onClick", "setAlarm()");
   document.getElementById("clock").style.display = "block";
@@ -10,45 +12,41 @@ function showClock() {
 }
 
 function showTime() {
-  var date = new Date();
-  var h = date.getHours();
-  var m = date.getMinutes();
-  var session = "AM";
+  date = new Date();
+  h = date.getHours();
+  m = date.getMinutes();
   if (h == 0) h = 12;
   if (h > 12) {
     h = h - 12;
     session = "PM";
   }
   m = (m < 10) ? "0" + m : m;
-  var time = h + ":" + m + " " + session;
-  document.getElementById("clock").innerText = time;
+  time = h + ":" + m + " " + session;
+  clock.innerText = time;
   if (alarmSet == true) checkAlarm(h, m);
   setTimeout(showTime, 60 * 1000);
 }
 
 function checkAlarm(h, m) {
-  if (h == hA && m == mA) alert("Ring! It's "+ hA + ":" + mA);
+  if (time == alarmTime) alert("Ring! It's " + alarmTime);
   clearAlarm();
 }
 
 function setAlarm() {
   hA = prompt("hour?");
   mA = prompt("minute?");
+  sessionA = prompt("AM or PM?").toUpperCase();
+  alarmTime = hA + ":" + mA + " " + sessionA;
   alarmSet = true;
-  let alarmButton = document.getElementById("alarmSet");
-  let clock = document.getElementById("clock");
   clock.classList.add("alarmActive");
-  alarmButton.innerHTML = "Remove " + hA + ":" + mA;
+  alarmButton.innerHTML = "Remove " + alarmTime;
   alarmButton.setAttribute("onClick", "clearAlarm()");
 }
 
 function clearAlarm() {
   hA = "00";
   mA = "00";
-  let clock = document.getElementById("clock");
   clock.classList.remove("alarmActive");
-  let alarmButton = document.getElementById("alarmSet");
   alarmButton.innerHTML = "Set Alarm";
   alarmButton.setAttribute("onClick", "setAlarm()");
 }
-
