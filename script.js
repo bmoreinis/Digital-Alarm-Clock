@@ -28,7 +28,10 @@ function showTime() {
 }
 
 function checkAlarm(h, m) {
-  if (time == alarmTime) alert("Ring! It's " + alarmTime);
+  if (time == alarmTime) {
+    alert("Ring! It's " + alarmTime);
+    document.getElementById('audio').play();
+  } 
   clearAlarm();
 }
 
