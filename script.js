@@ -1,4 +1,4 @@
-var h, m, hA, mA, sessionA, time, alarmTime;
+var h, m, alarmHour, alarmMinutes, sessionA, time, alarmTime, dateToday;
 var session = "AM";
 var alarmSet = false;
 var alarmButton = document.getElementById("alarmSet");
@@ -12,9 +12,9 @@ function showClock() {
 }
 
 function showTime() {
-  date = new Date();
-  h = date.getHours();
-  m = date.getMinutes();
+  dateToday = new Date();
+  h = dateToday.getHours();
+  m = dateToday.getMinutes();
   if (h == 0) h = 12;
   if (h > 12) {
     h = h - 12;
@@ -27,19 +27,19 @@ function showTime() {
   setTimeout(showTime, 60 * 1000);
 }
 
-function checkAlarm(h, m) {
+function checkAlarm() {
   if (time == alarmTime) {
     alert("Ring! It's " + alarmTime);
     document.getElementById('audio').play();
-  } 
+  }
   clearAlarm();
 }
 
 function setAlarm() {
-  hA = prompt("hour?");
-  mA = prompt("minute?");
+  alarmHour = prompt("hour?");
+  alarmMinutes = prompt("minute?");
   sessionA = prompt("AM or PM?").toUpperCase();
-  alarmTime = hA + ":" + mA + " " + sessionA;
+  alarmTime = alarmHour + ":" + alarmMinutes + " " + sessionA;
   alarmSet = true;
   clock.classList.add("alarmActive");
   alarmButton.innerHTML = "Remove " + alarmTime;
@@ -47,8 +47,8 @@ function setAlarm() {
 }
 
 function clearAlarm() {
-  hA = "00";
-  mA = "00";
+  alarmHour = "00";
+  alarmMinutes = "00";
   clock.classList.remove("alarmActive");
   alarmButton.innerHTML = "Set Alarm";
   alarmButton.setAttribute("onClick", "setAlarm()");
